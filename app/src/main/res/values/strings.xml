@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lesson2</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_skip">Scip</string>
+    <string name="item_title">Title</string>
+    <string name="item_des">Description</string>
+    <string name="item_back">Back</string>
+    <string name="item_next">Let/s go </string>
+</resources>
