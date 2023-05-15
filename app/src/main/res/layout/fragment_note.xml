@@ -7,20 +7,30 @@
     android:background="@color/dark_grey"
     tools:context=".ui.fragments.note.NoteFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:textColor="@color/black"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:text="@string/item_next"
-        android:id="@+id/item_btn_next"
 
-        app:cornerRadius="8dp"
-        android:backgroundTint="@color/yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="35dp"/>
+   <com.airbnb.lottie.LottieAnimationView
+       app:lottie_autoPlay="true"
+       app:lottie_loop="true"
+       android:layout_margin="20dp"
+       android:id="@+id/item_lt_board"
+       android:layout_width="350dp"
+       android:layout_height="350dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="25dp"
+       android:fontFamily="monospace"
+       android:text="@string/note"
+       android:textColor="@color/yellow"
+       android:textSize="34sp"
+       android:textStyle="bold"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/item_lt_board" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

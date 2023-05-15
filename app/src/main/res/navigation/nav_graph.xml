@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/noteFragment">
+    app:startDestination="@id/onBoardFragment">
 
     <fragment
-        android:id="@+id/addNoteFragment"
-        android:name="com.example.lesson2.ui.fragments.addnote.AddNoteFragment"
+        android:id="@+id/contact_note_fragment"
+        android:name="com.example.lesson2.ui.fragments.contactnote.ContactNoteFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.example.lesson2.ui.fragments.note.NoteFragment"
@@ -20,4 +20,9 @@
         android:name="com.example.lesson2.ui.fragments.board.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/profile_note_fragment"
+        android:name="com.example.lesson2.ui.fragments.profilenote.ProfileNoteFragment"
+        android:label="fragment_profile_note"
+        tools:layout="@layout/fragment_profile_note" />
 </navigation>

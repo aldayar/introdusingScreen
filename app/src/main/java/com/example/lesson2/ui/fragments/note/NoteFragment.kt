@@ -8,9 +8,8 @@ import com.example.lesson2.databinding.FragmentNoteBinding
 class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate) {
 
     override fun setupUI() {
-        binding.itemBtnNext.setOnClickListener{
-            findNavController().navigate(R.id.addNoteFragment)
-        }
+        binding.itemLtBoard.setAnimation(R.raw.note)
+        binding.itemLtBoard.playAnimation()
 
     }
 

@@ -6,4 +6,8 @@
     <string name="item_des">Description</string>
     <string name="item_back">Back</string>
     <string name="item_next">Let/s go </string>
+    <string name="item_help">Swipe to know more, or if know press to skip button </string>
+    <string name="profile">Profile screen </string>
+    <string name="note">Note</string>
+    <string name="contact">Contact</string>
 </resources>
