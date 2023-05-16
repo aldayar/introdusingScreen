@@ -1,6 +1,5 @@
 package com.example.lesson2.ui.fragments.board
 
-import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.lesson2.R
 import com.example.lesson2.base.BaseFragment
@@ -15,17 +14,17 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
         private val adapter:BoardAdapter by lazy { BoardAdapter(this::listener,this::skip) }
     override fun setupUI() {
         binding.pager.adapter = adapter
-        dotsIndicator =binding.dotsIndicator
 
+        dotsIndicator =binding.dotsIndicator
         dotsIndicator.setViewPager2(binding.pager)
 
     }
+
+    override fun setAnim() {null}
     private fun listener(){
         App.prefs.saveBoardState()
         findNavController().navigate(R.id.noteFragment)
-
     }
-
     private fun skip() {
         App.prefs.saveBoardState()
         findNavController().navigate(R.id.noteFragment)

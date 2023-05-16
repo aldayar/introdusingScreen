@@ -28,5 +28,7 @@ abstract  class BaseFragment<VB: ViewBinding> (private val inflate: Inflate<VB>)
         setupObserver()
     }
     abstract fun setupUI()
+    abstract fun setAnim()
     open fun setupObserver(){}
+
 }

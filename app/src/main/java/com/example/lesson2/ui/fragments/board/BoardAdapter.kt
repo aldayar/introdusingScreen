@@ -43,6 +43,7 @@ class BoardAdapter(private val listener:()-> Unit,private val listenerSkip: () -
             }
 
 
+
             binding.itemBtnNext.isEnabled = position == titleList.size
 
         }

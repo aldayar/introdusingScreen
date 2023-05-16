@@ -23,7 +23,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
     }
 
-
     private fun start(){
         Handler(Looper.getMainLooper()).postDelayed({
             if (progress>=1500){
@@ -35,7 +34,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 binding.itemProgess.progress =  progress
             }
         },100)
-
     }
     private fun startApp() {
         val intent = Intent(this@SplashScreenActivity,MainActivity::class.java)
