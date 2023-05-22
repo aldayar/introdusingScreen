@@ -13,10 +13,8 @@
 
         <com.google.android.material.tabs.TabLayout
 
+        app:tabIndicatorHeight="0dp"
         android:paddingHorizontal="6dp"
-        app:tabIndicator="@null"
-        app:tabGravity="center"
-        app:tabBackground="@drawable/custom_dot_indicator"
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
