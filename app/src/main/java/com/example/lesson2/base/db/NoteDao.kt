@@ -7,6 +7,7 @@ import com.example.lesson2.data.model.NoteModel
 interface NoteDao {
 
     @Query("select * from notemodel")
+
     fun getAllNote(): List<NoteModel>
 
     @Insert

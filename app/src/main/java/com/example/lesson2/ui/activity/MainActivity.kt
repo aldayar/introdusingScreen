@@ -24,20 +24,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var navHostFragment =
+        val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+//        initNavCon()
+        //скрывает bottom navigation
         hideBotNav()
+        //замена фрагментов with help bottom navigation
         setAppbarConfiguration()
-
     }
 
     private fun hideBotNav(){
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val hideBotNav = when(destination.id){
                 R.id.contact_note_fragment,R.id.onBoardFragment -> true
-                else -> false
+                else-> {
+                    false
+                }
             }
             if (hideBotNav){
                 binding.navigation.visibility= View.GONE
@@ -51,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         if (!App.prefs.isBoardShow()) {
             navController.navigate(R.id.onBoardFragment)
         }
-        // замена фрагментов
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.contact_note_fragment,
@@ -63,4 +66,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navigation.setupWithNavController(navController)
     }
+//    private fun initNavCon(){
+//
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        navController = navHostFragment.navController
+//    }
 }

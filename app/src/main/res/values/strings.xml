@@ -10,4 +10,9 @@
     <string name="profile">Profile screen </string>
     <string name="note">Note</string>
     <string name="contact">Contact</string>
+    <string name="date">Date</string>
+    <string name="add_note">Add title...</string>
+    <string name="add_des">Add description...</string>
+    <string name="add_photo">Add photo</string>
+    <string name="save">Save</string>
 </resources>

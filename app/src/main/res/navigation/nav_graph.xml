@@ -22,7 +22,27 @@
         tools:layout="@layout/fragment_on_board" />
     <fragment
         android:id="@+id/profile_note_fragment"
-        android:name="com.example.lesson2.ui.fragments.profilenote.ProfileNoteFragment"
+        android:name="com.example.lesson2.ui.fragments.frirdata.FireStoreDataFragment"
         android:label="fragment_profile_note"
         tools:layout="@layout/fragment_profile_note" />
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.lesson2.ui.fragments.addnotefragment.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
+    <fragment
+        android:id="@+id/phoneFragment"
+        android:name="com.example.lesson2.ui.fragments.init.PhoneFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.lesson2.ui.fragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="com.example.lesson2.ui.fragments.code.CodeFragment"
+        android:label="CodeFragment"
+        tools:layout="@layout/fragment_code"/>
 </navigation>

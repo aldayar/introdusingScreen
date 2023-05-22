@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_grey2"
-    tools:context=".ui.fragments.profilenote.ProfileNoteFragment">
+    tools:context=".ui.fragments.frirdata.FireStoreDataFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         app:lottie_autoPlay="true"
