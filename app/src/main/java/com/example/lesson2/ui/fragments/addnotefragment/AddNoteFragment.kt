@@ -27,9 +27,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
     override fun setupUI() {
         getImg()
     }
-    override fun setAnim() {
-        null
-    }
 
     private fun getImg() {
         binding.imgView.setOnClickListener {

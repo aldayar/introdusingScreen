@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.lesson2.R
 import com.example.lesson2.base.BaseFragment
@@ -25,9 +26,7 @@ class CodeFragment : BaseFragment<FragmentCodeBinding>(FragmentCodeBinding::infl
         }
     }
 
-    override fun setAnim() {
 
-    }
 
     override fun setupObserver() {
         binding.btnInit.setOnClickListener {
@@ -35,9 +34,10 @@ class CodeFragment : BaseFragment<FragmentCodeBinding>(FragmentCodeBinding::infl
             val credential = PhoneAuthProvider.getCredential(id, code)
             mAuth.signInWithCredential(credential).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    findNavController().navigate(R.id.noteFragment)
+                    Toast.makeText(requireContext(), "Authentication done, successful", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
                 } else {
-                    Log.e("ololo", it.exception?.message.toString())
+                        Log.e("ololo", it.exception?.message.toString())
                 }
             }
         }

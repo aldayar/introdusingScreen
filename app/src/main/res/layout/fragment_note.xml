@@ -6,19 +6,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_grey"
     tools:context=".ui.fragments.note.NoteFragment">
+ <TextView
+     android:background="@color/dark_grey2"
+     android:layout_margin="5dp"
+     android:gravity="center"
+     android:id="@+id/tv_title"
+    app:layout_constraintEnd_toStartOf="@id/item_sort_btn"
+     android:textSize="20sp"
+     android:textColor="@color/yellow"
+     android:textStyle="bold"
+     android:text="@string/notes"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     android:layout_width="0dp"
+     android:layout_height="60dp"/>
 
-
-   <com.airbnb.lottie.LottieAnimationView
-       app:lottie_autoPlay="true"
-       app:lottie_loop="true"
-       android:layout_margin="20dp"
-       android:id="@+id/item_lt_board"
-       android:layout_width="150dp"
-       android:layout_height="150dp"
-
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.button.MaterialButton
+        android:drawableEnd="@drawable/ic_sort"
+        app:cornerRadius="8dp"
+        android:backgroundTint="@color/dark_grey3"
+        android:layout_margin="5dp"
+        android:id="@+id/item_sort_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
 
   <androidx.recyclerview.widget.RecyclerView
       android:layout_margin="5dp"
@@ -26,7 +38,7 @@
       tools:listitem="@layout/item_rc_view"
       android:id="@+id/recycler"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/item_lt_board"
+      app:layout_constraintTop_toBottomOf="@id/tv_title"
       android:layout_width="match_parent"
       android:layout_height="0dp"/>
 

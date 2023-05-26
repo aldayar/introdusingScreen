@@ -8,9 +8,8 @@ import androidx.room.RoomDatabase
 import com.example.lesson2.data.model.NoteModel
 
 @Database(entities = [NoteModel::class], version = 2)
-abstract class NoteDataBase : RoomDatabase() {
+    abstract class NoteDataBase : RoomDatabase() {
     abstract fun getNoteDao(): NoteDao
-
     companion object{
         private var INSTANCE: NoteDataBase?=null
         private val LOCK = Any()
@@ -21,5 +20,16 @@ abstract class NoteDataBase : RoomDatabase() {
         operator fun invoke(context: Context)= INSTANCE?: synchronized(LOCK){
             INSTANCE ?: buildDataBase(context).also { INSTANCE = it }
         }
+        fun getInstance(context: Context): NoteDataBase {
+            return INSTANCE ?: synchronized(this) {
+                val database = Room.databaseBuilder(context.applicationContext,
+                    NoteDataBase::class.java,
+                    "item_database",
+                ).fallbackToDestructiveMigration().build()
+                INSTANCE = database
+                database
+            }
+        }
+
     }
 }

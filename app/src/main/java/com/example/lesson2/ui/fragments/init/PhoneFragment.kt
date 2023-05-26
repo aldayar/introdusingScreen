@@ -29,8 +29,7 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::i
         mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun setAnim() {
-    }
+
 
     override fun setupObserver() {
         binding.btnInit.setOnClickListener {
@@ -45,7 +44,8 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::i
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        findNavController().navigate(R.id.noteFragment)
+                        Toast.makeText(requireContext(), "Welcome to app", Toast.LENGTH_SHORT).show()
+                        findNavController().navigateUp()
                     } else {
                         Log.e("ololo", task.exception?.message.toString())
                     }
@@ -53,6 +53,7 @@ class PhoneFragment : BaseFragment<FragmentPhoneBinding>(FragmentPhoneBinding::i
             }
 
             override fun onVerificationFailed(p0: FirebaseException) {
+                Toast.makeText(requireContext(), "Your entered phone number invalid, please check and try again", Toast.LENGTH_SHORT).show()
                 Log.e("ololo", p0.message.toString())
             }
 

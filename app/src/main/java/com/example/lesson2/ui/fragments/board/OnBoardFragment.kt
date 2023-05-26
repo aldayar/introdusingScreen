@@ -1,5 +1,6 @@
 package com.example.lesson2.ui.fragments.board
 
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.example.lesson2.R
 import com.example.lesson2.base.BaseFragment
@@ -20,8 +21,6 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
         binding.pager.adapter = adapter
         tabIndicator()
     }
-    override fun setAnim() {}
-
     private fun listener() {
         App.prefs.saveBoardState()
         findNavController().navigate(R.id.phoneFragment)

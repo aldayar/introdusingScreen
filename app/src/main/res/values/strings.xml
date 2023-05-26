@@ -15,4 +15,12 @@
     <string name="add_des">Add description...</string>
     <string name="add_photo">Add photo</string>
     <string name="save">Save</string>
+    <string name="contacts">Your contacts</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone number:</string>
+    <string name="read_contacts">Read contact</string>
+    <string name="notes">Your notes</string>
+    <string name="surname">Surname:</string>
+    <string name="married">Married:</string>
+
 </resources>

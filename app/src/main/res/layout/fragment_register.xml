@@ -5,25 +5,37 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.RegisterFragment">
+    tools:context=".ui.fragments.profile.RegisterFragment">
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="250dp"/>
+
     <EditText
         android:id="@+id/et_name"
-        android:hint="name"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="name"
+        android:minHeight="48dp" />
+
     <EditText
         android:id="@+id/et_surName"
-        android:hint="surname"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="surname"
+        android:minHeight="48dp" />
+
     <EditText
         android:id="@+id/et_number"
-        android:hint="number"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="number"
+        android:minHeight="48dp" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -38,14 +50,31 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
-        <com.google.android.material.switchmaterial.SwitchMaterial
+
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/sm_merried"
-            android:layout_marginStart="5dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_merried"
-            app:layout_constraintTop_toTopOf="@id/tv_merried"
-            app:layout_constraintStart_toEndOf="@id/tv_merried"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textOff="No"
+            android:textOn="Yes"
+            app:layout_constraintBottom_toBottomOf="@id/tv_merried"
+            app:layout_constraintStart_toEndOf="@id/tv_merried"
+            app:layout_constraintTop_toTopOf="@id/tv_merried"
+            app:showText="true"
+            tools:ignore="TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_user_mod"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        app:cornerRadius="8dp"
+        android:padding="15dp"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

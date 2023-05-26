@@ -9,7 +9,7 @@ import com.example.lesson2.R
 import com.example.lesson2.databinding.ItemBoardBinding
 
 class BoardAdapter(private val listener:()-> Unit,private val listenerSkip: () -> Unit):Adapter<BoardAdapter.BoardViewHolder>() {
-    private val animList= listOf(R.raw.note_anim,R.raw.note_anim_2,R.raw.note_anim_3)
+   private val animList= listOf(R.raw.note_anim,R.raw.note_anim_2,R.raw.note_anim_3)
    private val titleList = listOf("About app", "About us" , "How to use")
    private val desList = listOf("App was developed on kotlin", "About us is nothing known" , "Save what you want, and it will be save forever")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= BoardViewHolder(

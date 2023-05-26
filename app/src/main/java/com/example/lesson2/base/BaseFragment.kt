@@ -1,6 +1,9 @@
 package com.example.lesson2.base
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +31,7 @@ abstract  class BaseFragment<VB: ViewBinding> (private val inflate: Inflate<VB>)
         setupObserver()
     }
     abstract fun setupUI()
-    abstract fun setAnim()
     open fun setupObserver(){}
+
 
 }

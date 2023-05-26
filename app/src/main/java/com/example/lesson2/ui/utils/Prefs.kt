@@ -5,36 +5,56 @@ import android.content.SharedPreferences
 
 class Prefs(private val preferences:SharedPreferences) {
 
-    fun saveBoardState(){
-        preferences.edit().putBoolean("isShow",true).apply()
-    }
-    fun isBoardShow():Boolean{
-        return preferences.getBoolean("isShow", false)
+    fun saveBoardState() {
+        preferences.edit().putBoolean("isShow", true).apply()
     }
     @SuppressLint("CommitPrefEdits")
-    fun saveUserName(name:String){
-        preferences.edit().putString("name",name).apply()
+    fun logOut() {
+        preferences.edit().clear().apply()
     }
-    fun getUserName(): String{
-        return preferences.getString("name","Unknown")!!
+
+    fun isBoardShow(): Boolean {
+        return preferences.getBoolean("isShow", false)
     }
-    fun saveSurUserName(name:String){
-        preferences.edit().putString("name",name).apply()
+    fun saveUserMod(){
+        preferences.edit().putBoolean("registered",true).apply ()
     }
-    fun getSurUserName(): String{
-        return preferences.getString("name","Unknown")!!
+    fun isRegisterShowed():Boolean{
+        return preferences.getBoolean("registered",false)
     }
-    fun saveUserPhone(number:Int){
-        preferences.edit().putInt("number",number).apply()
+
+    @SuppressLint("CommitPrefEdits")
+    fun saveUserName(name: String) {
+        preferences.edit().putString("name", name).apply()
     }
-    fun getUserNumber(): Int{
+
+    fun getUserName(): String {
+        return preferences.getString("name", "Unknown")!!
+    }
+
+    fun saveSurUserName(name: String) {
+        preferences.edit().putString("sur_user_name", name).apply()
+    }
+
+    fun getSurUserName(): String {
+        return preferences.getString("sur_user_name", "Unknown")!!
+    }
+
+    fun saveUserPhone(number: Int) {
+        preferences.edit().putInt("number", number).apply()
+    }
+
+    fun getUserNumber(): Int {
         return preferences.getInt("number", 1)
     }
-    fun saveUserMArried(isMAried:Boolean){
-        preferences.edit().putBoolean("isMeried",isMAried).apply()
+
+    fun isUserMarried(isMarried: Boolean): Boolean {
+        preferences.edit().putBoolean("isMaried", isMarried).apply()
+        return isMarried
     }
-    fun getUserMeried(): Boolean{
-        return preferences.getBoolean("isMeried", false)
+
+    fun getUserMarried(): Boolean {
+        return preferences.getBoolean("isMaried", false)
     }
 
 }

@@ -1,26 +1,94 @@
 package com.example.lesson2.ui.fragments.contactnote
 
-import androidx.navigation.fragment.findNavController
-import com.example.lesson2.R
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.provider.ContactsContract.CommonDataKinds.Phone
+import android.provider.ContactsContract.Contacts
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.lesson2.base.BaseFragment
 import com.example.lesson2.databinding.FragmentContactBinding
 
-
 class ContactNoteFragment : BaseFragment<FragmentContactBinding>(FragmentContactBinding::inflate) {
+    private val adapter: ContactAdapter by lazy { ContactAdapter(this::call,this::chat) }
     override fun setupUI() {
-        setAnim()
-        back()
+        Toast.makeText(requireContext(), "Your contacts", Toast.LENGTH_LONG).show()
+        binding.recyclerView.adapter = adapter
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(), android.Manifest.permission.READ_CONTACTS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(requireActivity(), Array(1) {
+                android.Manifest.permission.READ_CONTACTS
+            }, 111)
+        } else {
+            getcontact()
+        }
+
     }
 
-    override fun setAnim() {
-        binding.itemLtBoard.setAnimation(R.raw.contact)
-        binding.itemLtBoard.playAnimation()
-    }
-    private fun back(){
-        binding.btnBack.setOnClickListener{
-            findNavController().navigate(R.id.noteFragment)
+    @SuppressLint("Range", "Recycle")
+    private fun getcontact() {
+        val list = arrayListOf<ContactModel>()
+        val contentResolver = requireActivity().contentResolver
+        val cursor = contentResolver.query(
+            Contacts.CONTENT_URI, null, null, null,
+            Phone.DISPLAY_NAME
+        )
+        if (cursor?.count!! > 0) {
+            while (cursor.moveToNext()) {
+                if (Integer.parseInt(
+                        cursor.getString(
+                            cursor.getColumnIndex(
+                                Contacts.HAS_PHONE_NUMBER
+                            )
+                        )
+                    ) > 0
+                ) {
+                    val id = cursor.getString(cursor.getColumnIndex(Contacts._ID))
+                    val name = cursor.getString(cursor.getColumnIndex(Contacts.DISPLAY_NAME))
+
+                    val numberCursor = contentResolver.query(
+                        Phone.CONTENT_URI,
+                        null,
+                        Phone.CONTACT_ID + " =?",
+                        arrayOf(id),
+                        null
+                    )
+                    if (numberCursor?.moveToNext()!!){
+                        val phoneNumber= numberCursor.getString(numberCursor.getColumnIndex(Phone.NUMBER))
+                        numberCursor.close()
+                        list.add(ContactModel(name = name, number = phoneNumber))
+                    }
+                }
+            }
+            cursor.close()
+            adapter.submitList(list)
         }
     }
+    private fun call(number: String){
+        if (ActivityCompat.checkSelfPermission(requireContext(),
+                android.Manifest.permission.CALL_PHONE)==PackageManager.PERMISSION_GRANTED){
+            callContact(number)
+        }else{
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CALL_PHONE),110)
+        }
+        val intent=Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
+    }
+    private fun chat (number: String){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("https://whatsapp.me/$number")
+        startActivity(intent)
 
+    }
+    private fun callContact(number:String){
+        val intent=Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
 
+    }
 }
