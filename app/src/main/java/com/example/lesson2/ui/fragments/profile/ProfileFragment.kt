@@ -1,22 +1,27 @@
 package com.example.lesson2.ui.fragments.profile
 
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.lesson2.R
 import com.example.lesson2.base.BaseFragment
 import com.example.lesson2.databinding.FragmentProfileNoteBinding
 import com.example.lesson2.ui.activity.App
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.math.log
 
 class ProfileFragment : BaseFragment<FragmentProfileNoteBinding>(FragmentProfileNoteBinding::inflate) {
 
     override fun setupUI() {
+
         showRegisterFragment()
         setTextFromSharedPref()
-        binding.tvUserChecker.text = App.prefs.getUserMarried().toString()
+            binding.tvUserChecker.text = App.prefs.getUserMarried().toString()
         logOut()
     }
     private fun logOut(){
-        binding.btnLogOut.setOnClickListener{
+        val  btnLogOutUser: FloatingActionButton = requireView().findViewById(R.id._btn_log_out_user)
+        btnLogOutUser.setOnClickListener {
             App.prefs.logOut()
         }
     }

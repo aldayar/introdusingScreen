@@ -1,7 +1,6 @@
 package com.example.lesson2.ui.fragments.note
 
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -11,15 +10,11 @@ import com.example.lesson2.data.model.NoteModel
 import com.example.lesson2.databinding.FragmentNoteBinding
 import com.example.lesson2.ui.activity.App
 
-class NoteFragment(): BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate) {
+class NoteFragment: BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate) {
 
-    private val adapter: NoteAdapter by lazy { NoteAdapter() }
-
+    private val adapter: NoteAdapter by lazy { NoteAdapter(requireContext()) }
     override fun setupUI() {
-
-
         binding.recycler.adapter = adapter
-
         getNote()
         showText()
         toAddNote()
@@ -72,9 +67,9 @@ class NoteFragment(): BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inf
     }
     private fun showText(){
         if (adapter.itemCount==0) {
-            binding.tvTitle.setText("Add notes")
+            binding.tvTitle.setText(R.string.title1)
         }else{
-            binding.tvTitle.setText("Your notes")
+            binding.tvTitle.setText(R.string.title2)
 
         }
     }
@@ -85,13 +80,11 @@ class NoteFragment(): BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inf
             builder.setMessage("Do you want to sort by:")
             builder.setPositiveButton("Name") { _, _ ->
                 App.db.getNoteDao().getSortedByTitle()
-
             }
             builder.setNeutralButton("Cancel",null)
 
             builder.setNegativeButton("Date"){_,_->
                 App.db.getNoteDao().getSortedByDate()
-
             }
             builder.show()
         }

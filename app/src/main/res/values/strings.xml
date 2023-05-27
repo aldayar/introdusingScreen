@@ -22,5 +22,7 @@
     <string name="notes">Your notes</string>
     <string name="surname">Surname:</string>
     <string name="married">Married:</string>
+    <string name="title1">Add note</string>
+    <string name="title2">Your notes</string>
 
 </resources>

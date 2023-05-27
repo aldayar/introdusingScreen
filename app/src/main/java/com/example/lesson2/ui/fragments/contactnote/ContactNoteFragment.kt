@@ -3,7 +3,10 @@ package com.example.lesson2.ui.fragments.contactnote
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.provider.ContactsContract.Contacts
 import android.widget.Toast
@@ -13,6 +16,7 @@ import com.example.lesson2.databinding.FragmentContactBinding
 
 class ContactNoteFragment : BaseFragment<FragmentContactBinding>(FragmentContactBinding::inflate) {
     private val adapter: ContactAdapter by lazy { ContactAdapter(this::call,this::chat) }
+    private lateinit var phoneNumber: String
     override fun setupUI() {
         Toast.makeText(requireContext(), "Your contacts", Toast.LENGTH_LONG).show()
         binding.recyclerView.adapter = adapter
@@ -58,10 +62,26 @@ class ContactNoteFragment : BaseFragment<FragmentContactBinding>(FragmentContact
                         null
                     )
                     if (numberCursor?.moveToNext()!!){
-                        val phoneNumber= numberCursor.getString(numberCursor.getColumnIndex(Phone.NUMBER))
-                        numberCursor.close()
-                        list.add(ContactModel(name = name, number = phoneNumber))
+                         phoneNumber= numberCursor.getString(numberCursor.getColumnIndex(Phone.NUMBER))
+
+
                     }
+                    val imageCursor = contentResolver.query(
+                        ContactsContract.Data.CONTENT_URI,
+                        null,
+                        ContactsContract.Data.CONTACT_ID + "=?" + ContactsContract.Data.MIMETYPE + "=?",
+                        arrayOf(id, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE),
+                        null
+                    )
+
+                    if (imageCursor?.moveToFirst() == true) {
+                        val photoBytes = imageCursor.getBlob(imageCursor.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO))
+                        if (photoBytes != null) {
+                            val bitmap = BitmapFactory.decodeByteArray(photoBytes, 0, photoBytes.size)
+                            list.add(ContactModel(name = name, number = phoneNumber, img = bitmap))
+                        }
+                    }
+                    imageCursor?.close()
                 }
             }
             cursor.close()

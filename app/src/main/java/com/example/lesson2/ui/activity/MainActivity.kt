@@ -12,7 +12,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.lesson2.R
 import com.example.lesson2.databinding.ActivityMainBinding
-import com.example.lesson2.ui.fragments.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,15 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        //не показывает фрагмент
-        if (App.prefs.isRegisterShowed()){
-            navController.navigateUp()
-        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
         setAppbarConfiguration()
+        //не показывает фрагмент
         if (!App.prefs.isRegisterShowed()){
             navController.navigateUp()
         }
