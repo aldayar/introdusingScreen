@@ -41,10 +41,6 @@ class BoardAdapter(private val listener:()-> Unit,private val listenerSkip: () -
             binding.itemBtnSkip.setOnClickListener{
                 listenerSkip.invoke()
             }
-
-
-
-
             binding.itemBtnNext.isEnabled = position == titleList.size-1
 
         }

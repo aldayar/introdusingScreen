@@ -35,7 +35,7 @@ class CodeFragment : BaseFragment<FragmentCodeBinding>(FragmentCodeBinding::infl
             mAuth.signInWithCredential(credential).addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(requireContext(), "Authentication done, successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigateUp()
+                    findNavController().navigate(R.id.noteFragment)
                 } else {
                         Log.e("ololo", it.exception?.message.toString())
                 }

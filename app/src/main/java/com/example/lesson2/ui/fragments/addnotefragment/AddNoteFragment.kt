@@ -25,7 +25,12 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupUI() {
-        getImg()
+        val agrs =  AddNoteFragmentArgs.fromBundle(requireArguments()).firstArg
+        if (agrs!=null){
+            getImg()
+            loadImageFromUri(uri = Uri.EMPTY)
+        }
+
     }
 
     private fun getImg() {

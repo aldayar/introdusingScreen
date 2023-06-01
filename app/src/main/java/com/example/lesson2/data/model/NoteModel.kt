@@ -1,6 +1,6 @@
 package com.example.lesson2.data.model
 
-import android.net.Uri
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

@@ -62,14 +62,13 @@ class ContactNoteFragment : BaseFragment<FragmentContactBinding>(FragmentContact
                         null
                     )
                     if (numberCursor?.moveToNext()!!){
-                         phoneNumber= numberCursor.getString(numberCursor.getColumnIndex(Phone.NUMBER))
-
-
+                        phoneNumber= numberCursor.getString(numberCursor.getColumnIndex(Phone.NUMBER))
                     }
+
                     val imageCursor = contentResolver.query(
                         ContactsContract.Data.CONTENT_URI,
                         null,
-                        ContactsContract.Data.CONTACT_ID + "=?" + ContactsContract.Data.MIMETYPE + "=?",
+                        ContactsContract.Data.CONTACT_ID + "=? AND " + ContactsContract.Data.MIMETYPE + "=?",
                         arrayOf(id, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE),
                         null
                     )
@@ -88,6 +87,7 @@ class ContactNoteFragment : BaseFragment<FragmentContactBinding>(FragmentContact
             adapter.submitList(list)
         }
     }
+
     private fun call(number: String){
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.CALL_PHONE)==PackageManager.PERMISSION_GRANTED){

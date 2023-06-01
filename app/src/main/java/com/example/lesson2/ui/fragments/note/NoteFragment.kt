@@ -14,6 +14,8 @@ class NoteFragment: BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infla
 
     private val adapter: NoteAdapter by lazy { NoteAdapter(requireContext()) }
     override fun setupUI() {
+
+
         binding.recycler.adapter = adapter
         getNote()
         showText()
@@ -25,18 +27,14 @@ class NoteFragment: BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infla
     private fun getNote() {
         adapter.setList(App.db.getNoteDao().getAllNote() as ArrayList<NoteModel>)
     }
-
-
     override fun setupObserver() {
         deleteNote()
     }
-
     private fun toAddNote() {
         binding.floatingActionBtn.setOnClickListener {
-            findNavController().navigate(R.id.addNoteFragment)
+            findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToAddNoteFragment("firstTool"))
         }
     }
-
     private fun deleteNote() {
         val simpleCallback = object :
             ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -56,7 +54,9 @@ class NoteFragment: BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infla
                     adapter.deleteNote(viewHolder.adapterPosition)
                     adapter.notifyItemRemoved(viewHolder.adapterPosition)
                 }
-                builder.setNegativeButton("No",null)
+                builder.setNegativeButton("No"){_,_->
+
+                }
                 builder.show()
 
             }

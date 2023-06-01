@@ -1,7 +1,9 @@
 package com.example.lesson2.ui.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
 
 class Prefs(private val preferences:SharedPreferences) {
 
@@ -9,8 +11,9 @@ class Prefs(private val preferences:SharedPreferences) {
         preferences.edit().putBoolean("isShow", true).apply()
     }
     @SuppressLint("CommitPrefEdits")
-    fun logOut() {
+    fun logOut(context: Context) {
         preferences.edit().clear().apply()
+        Toast.makeText(context, "Successfully logged out", Toast.LENGTH_SHORT).show()
     }
 
     fun isBoardShow(): Boolean {
@@ -22,6 +25,12 @@ class Prefs(private val preferences:SharedPreferences) {
     fun isRegisterShowed():Boolean{
         return preferences.getBoolean("registered",false)
     }
+    fun saveRegByFireBase(){
+        preferences.edit().putBoolean("registeredFB",true).apply ()
+    }
+    fun isRegByFBShowed():Boolean{
+        return preferences.getBoolean("registeredFB",false  )
+    }
 
     @SuppressLint("CommitPrefEdits")
     fun saveUserName(name: String) {
@@ -29,7 +38,7 @@ class Prefs(private val preferences:SharedPreferences) {
     }
 
     fun getUserName(): String {
-        return preferences.getString("name", "Unknown")!!
+        return preferences.getString("name", "Name is empty")!!
     }
 
     fun saveSurUserName(name: String) {
@@ -37,7 +46,7 @@ class Prefs(private val preferences:SharedPreferences) {
     }
 
     fun getSurUserName(): String {
-        return preferences.getString("sur_user_name", "Unknown")!!
+        return preferences.getString("sur_user_name", "Sur name is empty")!!
     }
 
     fun saveUserPhone(number: Int) {
@@ -49,12 +58,12 @@ class Prefs(private val preferences:SharedPreferences) {
     }
 
     fun isUserMarried(isMarried: Boolean): Boolean {
-        preferences.edit().putBoolean("isMaried", isMarried).apply()
+        preferences.edit().putBoolean("isMarried", isMarried).apply()
         return isMarried
     }
 
     fun getUserMarried(): Boolean {
-        return preferences.getBoolean("isMaried", false)
+        return preferences.getBoolean("isMarried", false)
     }
 
 }

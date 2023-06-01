@@ -3,6 +3,7 @@ package com.example.lesson2.ui.fragments.profile
 
 import android.util.Log
 import androidx.navigation.fragment.findNavController
+import com.example.lesson2.R
 import com.example.lesson2.base.BaseFragment
 import com.example.lesson2.databinding.FragmentRegisterBinding
 import com.example.lesson2.ui.activity.App
@@ -10,7 +11,6 @@ import com.example.lesson2.ui.activity.App
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
     override fun setupUI() {
-        saveUserMod()
         saveBtnListener()
 
     }
@@ -18,11 +18,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     private fun saveBtnListener() {
         binding.btnSaveUserMod.setOnClickListener{
             App.prefs.saveUserMod()
-            findNavController().navigateUp()
+            saveUserMod()
+            findNavController().navigate(R.id.profile_note_fragment)
         }
     }
 
     private fun saveUserMod() {
+
         val name = binding.etName.text.toString()
         App.prefs.saveUserName(name)
         val surName = binding.etSurName.text.toString()
@@ -46,6 +48,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 binding.smMerried.setText("Not married")
             }
         }
+
 
 
     }

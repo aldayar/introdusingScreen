@@ -1,6 +1,5 @@
 package com.example.lesson2.ui.fragments.profile
 
-import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.lesson2.R
@@ -8,7 +7,6 @@ import com.example.lesson2.base.BaseFragment
 import com.example.lesson2.databinding.FragmentProfileNoteBinding
 import com.example.lesson2.ui.activity.App
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlin.math.log
 
 class ProfileFragment : BaseFragment<FragmentProfileNoteBinding>(FragmentProfileNoteBinding::inflate) {
 
@@ -16,13 +14,12 @@ class ProfileFragment : BaseFragment<FragmentProfileNoteBinding>(FragmentProfile
 
         showRegisterFragment()
         setTextFromSharedPref()
-            binding.tvUserChecker.text = App.prefs.getUserMarried().toString()
         logOut()
     }
     private fun logOut(){
         val  btnLogOutUser: FloatingActionButton = requireView().findViewById(R.id._btn_log_out_user)
         btnLogOutUser.setOnClickListener {
-            App.prefs.logOut()
+            App.prefs.logOut(requireActivity())
         }
     }
     private fun showRegisterFragment(){
@@ -34,6 +31,8 @@ class ProfileFragment : BaseFragment<FragmentProfileNoteBinding>(FragmentProfile
         }
     }
     private fun setTextFromSharedPref(){
+
+        binding.tvUserChecker.text = App.prefs.getUserMarried().toString()
         binding.tvUserName.text = App.prefs.getUserName()
         binding.tvUserSurname.text = App.prefs.getSurUserName()
         binding.tvUserNumber.text = App.prefs.getUserNumber().toString()
